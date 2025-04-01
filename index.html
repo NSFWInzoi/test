@@ -34,7 +34,7 @@
       let userAnswer = document.getElementById("captcha-answer").value;
       let correctAnswer = document.getElementById("captcha-answer").dataset.correct;
       if (parseInt(userAnswer) === parseInt(correctAnswer)) {
-        // Устанавливаем флаг прохождения проверки
+        
         localStorage.setItem('captchaPassed', 'true');
         window.location.href = "mod.html";
       } else {
